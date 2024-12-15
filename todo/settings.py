@@ -25,11 +25,11 @@ SECRET_KEY = 'kyy+hz#1gy%mkh918$lu+noh($_8wx06_h%uxnac&#4y$8u#uw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','bikrant-gupta.github.io']
-CORS_ALLOWED_ORIGIN = [
-    "http://127.0.0.1:5500",'https://bikrant-gupta.github.io/mc/'
-]
-CORS_ORIGIN_WHITELIST =   ["http://127.0.0.1:5500",'http://localhost:5500','https://bikrant-gupta.github.io']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','MamtaChahal.github.io']
+# CORS_ALLOWED_ORIGIN = [
+#     "http://127.0.0.1:5500",'https://MamtaChahal.github.io/mc/'
+# ]
+CORS_ORIGIN_WHITELIST =   ["http://127.0.0.1:5500",'http://localhost:5500','https://MamtaChahal.github.io']
 CORS_ORIGIN_ALLOW_ALL = False
 
 # Application definition
