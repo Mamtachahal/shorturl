@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0c6efd;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shorten URL</h1>
+        <input type="text" id="longUrl" placeholder="Enter long URL" />
+        <button id="shortenButton" type="button">Shorten URL</button>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#shortenButton").click(function(event) {
+                event.preventDefault(); // Prevent form submission
+                
+                const longUrl = $("#longUrl").val(); // Get the value from the input field
+
+                if (!longUrl) {
+                    alert("Please enter a valid URL");
+                    return;
+                }
+
+                const apiUrl = "http://localhost:8000/api/create/";
+
+                $.ajax({
+                    url: apiUrl,
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ url: longUrl }),
+                    success: function(response) {
+                        console.log("API Response:", response);
+                        $("#output").text("Shortened URL: " + response.shortUrl);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        alert("Failed to shorten the URL. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
